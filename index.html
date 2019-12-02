@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Agenda de Futbolistas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="assets/styles/football.css"
+    />
+  </head>
+  <body>
+    <main>
+      <div id="divList">
+        <p>Lista de jugadores</p>
+      </div>
+      <div id="divData">
+        <p>Datos del jugador</p>
+        <div id="form">
+          <input type="text" id="name" placeholder="Nombre del jugador" />
+          <input type="text" id="alias" placeholder="Alias del jugador" />
+          <select id="position"></select>
+          <input type="text" placeholder="20/12/1986" />
+          <select id="club"></select>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script src="Models/player.model.js"></script>
+  <script src="assets/constants/constants.js"></script>
+  <script src="view/footballView.js"></script>
+  <script src="services/football.service.js"></script>
+  <script src="services/regExp.service.js"></script>
+  <script src="services/http.service.js"></script>
+  <script src="controllers/football.controller.js"></script>
+  <script src="app.js"></script>
+</html>

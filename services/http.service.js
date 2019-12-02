@@ -1,1 +1,3 @@
-class httpService {}
+class httpService {
+  constructor() {}
+}
