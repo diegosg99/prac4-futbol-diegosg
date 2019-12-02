@@ -6,7 +6,7 @@ const POSITIONS = {
 };
 const CLUBS = ['Madrid', 'Barcelona', 'Chapecoense', 'Millenial FC', 'Coinbra'];
 const PLAYERS = [
-  new Player('Pepe Beltran', 'pepete', 'Banquillo', '03/12/1990', 'Chapecoense')
+  new Player('Pepe Beltran', 'pepete', 'Delantero', '03/12/1990', 'Chapecoense')
 ];
 const REGEXP = {
   NAME: /^[a-zA-Z]{3,255}/,
