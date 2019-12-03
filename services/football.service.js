@@ -1,17 +1,28 @@
 class footballService {
   constructor() {
-    this.players = PLAYERS;
+    this.players = this.getPlayers();
     this.clubs = CLUBS;
     this.positions = POSITIONS;
   }
+  getPlayers() {
+    const players = fetch("http://localhost:3000/")
+    .then(response => {
+      return response.json();
+    });
+    return players;
+  }
   getPlayer(name) {
-    return this.players.find(player => player.name === name);
+    const player = fetch("http://localhost:3000/"+name)
+    .then(response => {
+      return response.json();
+    });
+    return player;  
   }
   removePlayer(name) {
     delete this.players.find(player => player.name === name);
   }
   addPlayer({ name, alias, position, bornDate, club, photo = '' }) {
-    const player = new PLayer(name, alias, position, bornDate, club, photo);
+    const player = new Player(name, alias, position, bornDate, club, photo);
     this.players = [...this.players, player];
   }
   modifyPlayer({ name, alias, position, bornDate, club, photo = '' }) {

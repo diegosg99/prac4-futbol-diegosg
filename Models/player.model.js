@@ -1,11 +1,11 @@
 class Player {
-  constructor(_name, _alias, _position, _bornDate, _club = [], foto = '') {
+  constructor(_name, _alias, _position, _bornDate, _club = [], _photo = '') {
     this.name = _name;
     this.alias = _alias;
     this.position = _position;
     this.bornDate = _bornDate;
-    this.club = club;
-    this.foto = foto;
+    this.club = _club;
+    this.photo = _photo;
   }
   setName(name) {
     this.name = name;
@@ -47,5 +47,9 @@ class Player {
 
   getPhoto() {
     return this.photo;
+  }
+  toList(){
+    const html = "<li><div><img src='"+this.photo+"'><p>Nombre: "+this.name+"</p><p>Alias: "+this.alias+"</p><p>Fecha de nacimiento: "+this.bornDate+"</p><p>Position: "+this.position+"</p><p>Club: "+this.club+"</p></div>";
+    return html;
   }
 }
