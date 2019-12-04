@@ -18,21 +18,43 @@ class footballService {
     });
     return player;  
   }
-  removePlayerBD(name) {
-    const conf = { method: 'DELETE'};
-    const request = new Request('http://localhost:3000/'+name, conf);
-    const resp = fetch(request).then(response=> response);  
+  getPositions() {
+    const positions = fetch("http://localhost:3000/api/positions")
+    .then(response => {
+      return response.json();
+    });
+    return positions;  
+  }
+  getClubs() {
+    const clubs = fetch("http://localhost:3000/api/clubs")
+    .then(response => {
+      return response.json();
+    });
+    return clubs;  
+  }
+  
+  addPlayerBD = (data) => {
+    const resp = fetch("http://localhost:3000/",{
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)}).then(response=>response); 
+    return resp;
+  };
+
+  modifyPlayerBD = (data) => {
+    const resp = fetch("http://localhost:3000/",{
+      method: 'PUT',
+      
+      body: JSON.stringify(data)}).then(response=> response.text()); 
+    return resp;
+  };
+
+  removePlayerBD = (name) =>  {
+    const resp = fetch("http://localhost:3000/"+name,{
+      method: 'DELETE'}).then(response=> response.text()); 
     return resp;
   }
-  addPlayerBD(data) {
-    const conf = { method: 'POST',body: JSON.stringify(data),mode: 'cors', cache: 'default' };
-    const request = new Request('http://localhost:3000/', conf);
-    const resp = fetch(request).then(response=> response);  
-    return resp;  
-  }
-  modifyPlayerBD(data) {
-    const conf = { method: 'PUT',body: JSON.stringify(data),mode: 'cors', cache: 'default' };
-    const request = new Request('http://localhost:3000/', conf);
-    const resp = fetch(request).then(response=> response);  
-    return resp;  }
-}
+};

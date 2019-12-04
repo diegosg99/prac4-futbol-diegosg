@@ -4,34 +4,47 @@ class footballController {
     this.footballService = _footballService;
     this.regExpService = _regExpServie;
     this.initPage();
-
   }
   initPage(){
     this.initList();
-    this.view.bindAdd(this.addHandler());
-    this.view.bindModify(this.modifyHandler());
-    this.view.bindDelete(this.removeHandler());
-    this.view.bindSearch(this.searchPlayer());
+    this.initPositions();
+    this.initClub();
+    this.view.bindAdd(this.addHandler.bind(this)());
+    this.view.bindModify(this.modifyHandler.bind(this)());
+    this.view.bindDelete(this.removeHandler.bind(this)());
+    this.view.bindSearch(this.searchPlayer.bind(this)()); 
   }
   async initList(){
     const jsonplayers = await this.footballService.getPlayers();
     let players = jsonplayers.map(player => {return new Player(player.NOMBRE,player.ALIAS,player.ID_POS,player.FECHA_NACIMIENTO,player.CLUB)});
     this.view.initPlayers(players);
   }
-   addHandler(){
-    const data = this.view.getData();console.log(data);
-     this.footballService.addPlayerBD(data);
+  async initPositions(){
+    const jsonPositions = await this.footballService.getPositions();
+    let positions = jsonPositions.map(position => position.DESCRIPCION);
+    this.view.initPositions(positions);
   }
- modifyHandler(){
-    const data = this.view.getData();console.log(data);
-   this.footballService.modifyPlayerBD(data);
+  async initClub(){
+    const jsonclub = await this.footballService.getClubs();
+    let club = jsonclub.map(club => club.name);
+    this.view.initClubs(club);
   }
-  async removeHandler(){
-    const data = this.view.getData();console.log(data);
-     this.footballService.removePlayerBD(data.name);
+  addHandler = async () =>{
+    const data = this.view.getData();
+    this.footballService.addPlayerBD(data); 
+  }
+  modifyHandler= async () => {
+    console.log(this);
+    const data = this.view.getData();
+    return await this.footballService.modifyPlayerBD(data);
+  }
+  removeHandler = async () =>{
+    const data = this.view.getData();
+    return await this.footballService.removePlayerBD(data.name);
   }
   async searchPlayer(){
     const name = this.view.GUI.search.value;
+    console.log(name);
     const jsonplayers = await this.footballService.getPlayer(name);
       let players = jsonplayers.map(player => {return new Player(player.NOMBRE,player.ALIAS,player.ID_POS,player.FECHA_NACIMIENTO,player.CLUB)});
       this.view.initPlayers(players);
