@@ -18,22 +18,21 @@ class footballService {
     });
     return player;  
   }
-  removePlayer(name) {
-    delete this.players.find(player => player.name === name);
+  removePlayerBD(name) {
+    const conf = { method: 'DELETE'};
+    const request = new Request('http://localhost:3000/'+name, conf);
+    const resp = fetch(request).then(response=> response);  
+    return resp;
   }
-  addPlayer({ name, alias, position, bornDate, club, photo = '' }) {
-    const player = new Player(name, alias, position, bornDate, club, photo);
-    this.players = [...this.players, player];
+  addPlayerBD(data) {
+    const conf = { method: 'POST',body: JSON.stringify(data),mode: 'cors', cache: 'default' };
+    const request = new Request('http://localhost:3000/', conf);
+    const resp = fetch(request).then(response=> response);  
+    return resp;  
   }
-  modifyPlayer({ name, alias, position, bornDate, club, photo = '' }) {
-    let player = this.getPlayer(name);
-    player.setName(name);
-    player.setAlias(alias);
-    player.setBornDate(bornDate);
-    player.setPosition(position);
-    player.setClub(club);
-    player.setClub(photo);
-    this.removePlayer(name);
-    this.addPlayer(player);
-  }
+  modifyPlayerBD(data) {
+    const conf = { method: 'PUT',body: JSON.stringify(data),mode: 'cors', cache: 'default' };
+    const request = new Request('http://localhost:3000/', conf);
+    const resp = fetch(request).then(response=> response);  
+    return resp;  }
 }

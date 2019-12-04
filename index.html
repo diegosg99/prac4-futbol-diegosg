@@ -15,6 +15,7 @@
   <body>
     <main>
       <div id="divList">
+        <input type="text" placeholder="Busca un jugador" id="search">
         <p>Lista de jugadores</p>
         <li id="list">
 
@@ -25,10 +26,11 @@
         <div id="form">
           <input type="text" id="name" placeholder="Nombre del jugador" />
           <input type="text" id="alias" placeholder="Alias del jugador" />
-          <select id="position"></select>
+          <select id="position"><option value="0">Portero</option><option value="1">Defensa</option><option value="2">Medio</option><option value="3">Delantero</option></select>
           <input type="text" id="bornDate" placeholder="20/12/1986" />
           <select id="club"></select>
         </div>
+        <div><button id="add">Añadir</button><button id="modify">Modificar</button><button id="delete">Borrar</button></div>
       </div>
     </main>
   </body>

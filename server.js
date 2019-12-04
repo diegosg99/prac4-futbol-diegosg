@@ -32,20 +32,19 @@
       app.post('/', (req, res) => {
         const {alias,name,fecha,pos,club  } = req.body;
         connection.query("INSERT INTO players (alias,nombre,fecha_nacimiento,id_pos,club,foto) VALUES (?,?,?,?,?)", [alias,name,fecha,pos,club], function (err, result) {
-          if (err) throw err;
-          console.log("Usuario insertado");
+          if (err) res.status(404).send();
+            res.status(200).send("Insertado");
           });
       });    
       app.put('/', (req, res) => {
         const { alias,name,fecha,pos,club } = req.body;
         connection.query("UPDATE 'players' SET 'alias' = ? ,'nombre' =?,'fecha_nacimiento' = ? ,'id_pos' = ? ,'club' = ? ,WHERE NOMBRE = ?;", [alias,name,fecha,pos,club,name], function (err, result) {
           if (err) res.status(404).send();
-          console.log("Usuario modificado");
-          res.status(200);
+            res.status(200).send("Usuario modificado");
       });
     });
-      app.delete('/:id', (req, res) => {
-        const id = req.params.id;
+      app.delete('/:name', (req, res) => {
+        const name = req.params.name;
         connection.query("DELETE FROM players WHERE NOMBRE = ?;", name, function (err, result) {
           if (err) res.status(404).send();
           console.log(result);

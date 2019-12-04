@@ -49,7 +49,7 @@ class Player {
     return this.photo;
   }
   toList(){
-    const html = "<li><div><img src='"+this.photo+"'><p>Nombre: "+this.name+"</p><p>Alias: "+this.alias+"</p><p>Fecha de nacimiento: "+this.bornDate+"</p><p>Position: "+this.position+"</p><p>Club: "+this.club+"</p></div>";
+    const html = "<ul><div><img src='"+this.photo+"'><p>Nombre: "+this.name+"</p><p>Alias: "+this.alias+"</p><p>Fecha de nacimiento: "+this.bornDate+"</p><p>Position: "+this.position+"</p><p>Club: "+this.club+"</p></div></ul>";
     return html;
   }
 }
